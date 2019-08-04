@@ -21,6 +21,7 @@
     <ProjectReference Include="..\..\Services\WinesWorld.Services.Models\WinesWorld.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\WinesWorld.Services\WinesWorld.Services.csproj" />
     <ProjectReference Include="..\WinesWorld.Web.InputModels\WinesWorld.Web.InputModels.csproj" />
+    <ProjectReference Include="..\WinesWorld.Web.ViewModels\WinesWorld.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinesWorld.Data;
@@ -37,7 +39,7 @@ namespace WinesWorld.Services
                 }
             };
 
-            ;
+            
 
             this.context.Articles.Add(article);
             await this.context.SaveChangesAsync();
@@ -45,9 +47,26 @@ namespace WinesWorld.Services
             return true;
         }
 
-        public void GetAllArticles()
+        public List<ArticleServiceModel> GetAllArticles()
         {
-            throw new NotImplementedException();
+            List<ArticleServiceModel> articles = this.context.Articles
+                .Include(x => x.ArticlePictures)
+                .Select(articleFromDb => new ArticleServiceModel
+                {
+                    Id = articleFromDb.Id,
+                    Title = articleFromDb.Title,
+                    Content = articleFromDb.Content.Substring(0, 250),
+                    ArticlePictures = new List<ArticlePictureServiceModel>
+                    {
+                       new ArticlePictureServiceModel
+                       {
+                           ImageUrl = articleFromDb.ArticlePictures[0].ImageUrl
+                       }
+                    }
+                })
+                .ToList();
+
+            return articles;
         }
 
         public void GetArticleDetails()

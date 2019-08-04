@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WinesWorld.Services;
 using WinesWorld.Services.Models;
 using WinesWorld.Web.InputModels;
+using WinesWorld.Web.ViewModels.Article.All;
 
 namespace WinesWorld.Web.Controllers
 {
@@ -20,6 +22,14 @@ namespace WinesWorld.Web.Controllers
             this.articlesService = articlesService;
             this.cloudinaryService = cloudinaryService;
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult Add()
+        {
+            return this.View();
+        }
+
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
@@ -63,28 +73,25 @@ namespace WinesWorld.Web.Controllers
 
 
             await this.articlesService.Add(articleServiceModel);
-            
-            //links for pictures
-
-
-            //create article and add links for pictures
-            
-
-
-
+                        
             return this.Redirect("/Acticle/All");
-        }
-
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public IActionResult Add()
-        {
-            return this.View();
-        }
+        }        
 
         public IActionResult All()
         {
-            return this.View();
+
+
+            List<ArticleAllViewModel> viewModel = this.articlesService.GetAllArticles()
+                .Select(articleServiceModel => new ArticleAllViewModel
+                {
+                    Id = articleServiceModel.Id,
+                    BrefContent = articleServiceModel.Content,
+                    Title = articleServiceModel.Title,
+                    LinkMainPicture = articleServiceModel.ArticlePictures[0].ImageUrl
+                })
+                .ToList();
+
+            return this.View(viewModel);
         }
 
         public IActionResult Details()

@@ -8,7 +8,7 @@ namespace WinesWorld.Services
 {
     public interface IArticlesService
     {
-        void GetAllArticles();
+        List<ArticleServiceModel> GetAllArticles();
 
         void GetArticleDetails();
 
