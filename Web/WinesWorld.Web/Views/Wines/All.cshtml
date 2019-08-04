@@ -1,0 +1,147 @@
+﻿@model List<WinesWorld.Services.Models.WineServiceModel>
+
+@{
+    ViewData["Title"] = "All - Wines";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-2">
+        <aside class="col-left sidebar">
+            <div class="col-md-12 col-lg-6">
+                <strong>Търсене на: </strong>
+            </div>
+            <div class="col-md-12 col-lg-6 text-left">
+                <form method="post" asp-controller="Home" asp-action="Index">
+                    <input type="hidden" name="SearchString" value="">
+                    <input type="hidden" name="ChildCategoryId" value="">
+                    <input type="hidden" name="Page" value="">
+                    <span class="text-muted">Цвят:</span>
+                    <select name="SortBy" id="SortBy" onchange="this.form.submit();">
+                        <option value="1" selected="">Бяло</option>
+                        <option value="2" selected="">Червено</option>
+                        <option value="3" selected="">Розе</option>
+                    </select>
+                    <span class="text-muted">Тип:</span>
+                    <select name="SortBy" id="SortBy" onchange="this.form.submit()">
+                        <option value="1" selected="">Сухо вино</option>
+                        <option value="2" selected="">Сладко вино</option>
+                        <option value="3" selected="">Пенливо вино</option>
+                    </select>
+                    <span class="text-muted">Държава:</span>
+                    <select name="SortBy" id="SortBy" onchange="this.form.submit();">
+                        <option value="1" selected="">България</option>
+                        <option value="2" selected="">Аржентина</option>
+                        <option value="3" selected="">Нова Зеландия</option>
+                    </select>
+                    <span class="text-muted">Сортирай:</span>
+                    <select name="SortBy" id="SortBy" onchange="this.form.submit();">
+                        <option value="1" selected="">Най-нови</option>
+                        <option value="2" selected="">Най-стари</option>
+                        <option value="3" selected="">Цена(низх.)</option>
+                        <option value="4" selected="">Цена(възх.)</option>
+                    </select>
+                </form>
+            </div>
+        </aside>
+        @*<aside class="col-left sidebar mt-4">
+            <div class="col-md-12 col-lg-6">
+                <strong>Кошница: </strong>
+            </div>
+                            todo a search bar
+        </aside>*@
+    </div>
+
+    <div class="col-md-10">
+        <div class="row">
+            @foreach (var wine in Model)
+            {
+                @*<img class="img-responsive full-width" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" />*@
+
+                <div class="card col-md-3" style="width: 18rem;">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(wine.Picture)" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">@wine.Name</h5>
+                        <p class="card-text">@wine.Description</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">@wine.Type</li>
+                        <li class="list-group-item">@wine.Winery</li>
+
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Order</a>
+                        <a href="/Wines/Details/@wine.Id" class="card-link">Details</a>
+                    </div>
+                </div>
+            }
+
+            <div class="card col-md-3" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Wine's name</h5>
+                    <p class="card-text">Description of the wine</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type</li>
+                    <li class="list-group-item">Winery</li>
+
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Order</a>
+                    <a href="#" class="card-link">Details</a>
+                </div>
+            </div>
+            <div class="card col-md-3" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Wine's name</h5>
+                    <p class="card-text">Description of the wine</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type</li>
+                    <li class="list-group-item">Winery</li>
+
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Order</a>
+                    <a href="#" class="card-link">Details</a>
+                </div>
+            </div>
+            <div class="card col-md-3" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Wine's name</h5>
+                    <p class="card-text">Description of the wine</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type</li>
+                    <li class="list-group-item">Winery</li>
+
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Order</a>
+                    <a href="#" class="card-link">Details</a>
+                </div>
+            </div>
+            <div class="card col-md-3" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Wine's name</h5>
+                    <p class="card-text">Description of the wine</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Type</li>
+                    <li class="list-group-item">Winery</li>
+
+                </ul>
+                <div class="card-body">
+                    <a href="#" class="card-link">Order</a>
+                    <a href="#" class="card-link">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

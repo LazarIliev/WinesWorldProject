@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\WinesWorld.Data\WinesWorld.Data.csproj" />
+    <ProjectReference Include="..\WinesWorld.Services.Models\WinesWorld.Services.Models.csproj" />
+  </ItemGroup>
+
+</Project>

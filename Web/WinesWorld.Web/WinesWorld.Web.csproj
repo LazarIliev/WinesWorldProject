@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-WinesWorld.Web-2E77FDE9-0255-458B-B373-9423CCA9CB85</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.0.76" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\WinesWorld.Data\WinesWorld.Data.csproj" />
+    <ProjectReference Include="..\..\Services\WinesWorld.Services.Models\WinesWorld.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Services\WinesWorld.Services\WinesWorld.Services.csproj" />
+    <ProjectReference Include="..\WinesWorld.Web.InputModels\WinesWorld.Web.InputModels.csproj" />
+  </ItemGroup>
+
+</Project>

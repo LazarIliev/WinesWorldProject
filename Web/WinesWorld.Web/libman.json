@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jquery-datetimepicker@2.5.20",
+      "destination": "wwwroot/js/",
+      "files": [
+        "jquery.datetimepicker.full.min.js"
+      ]
+    },
+    {
+      "library": "popper.js@1.15.0",
+      "destination": "wwwroot/js/",
+      "files": [
+        "popper.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery@3.4.1",
+      "destination": "wwwroot/js/",
+      "files": [
+        "dist/jquery.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "bootstrap@4.3.1",
+      "destination": "wwwroot/js/",
+      "files": [
+        "dist/js/bootstrap.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "bootstrap@4.3.1",
+      "destination": "wwwroot/css/",
+      "files": [
+        "dist/css/bootstrap.min.css"
+      ]
+    }
+  ]
+}

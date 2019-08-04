@@ -1,0 +1,57 @@
+﻿@model WinesWorld.Services.Models.WineServiceModel
+
+@{
+    ViewData["Title"] = "Details - Wine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="container">
+
+        <!-- Portfolio Item Heading -->
+        <h1 class="my-4">
+            @Model.Name
+            <small>@Model.Type</small>
+        </h1>
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-6">
+                <img class="img-fluid" src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Picture)" alt="">
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="my-3">Description</h3>
+                <p>@Model.Description</p>
+                <h3 class="my-3">Project Details</h3>
+                <ul>
+                    <li>@Model.Winery</li>
+                    <li>@Model.Year</li>
+                    <li>price</li>
+                    <li>Order</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+        <!-- Related Projects Row -->
+        <h3 class="my-4">Related Projects</h3>
+
+        <ul class="text-left">
+            <li>@Model.Likes</li>
+        </ul>
+        <div class="row">
+            
+
+            <button>Likes</button>
+            <button>Favorite</button>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <h3>Comments</h3>
+        </div>
+
+    </div>
+<!-- /.container -->
