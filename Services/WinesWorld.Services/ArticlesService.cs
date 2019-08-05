@@ -69,9 +69,50 @@ namespace WinesWorld.Services
             return articles;
         }
 
-        public void GetArticleDetails()
+        public ArticleServiceModel GetArticleDetails(string id)
         {
-            throw new NotImplementedException();
+            ArticleServiceModel articleServiceModel = this.context.Articles
+                .Include(x => x.ArticlePictures)
+                .Where(articleDb => articleDb.Id == id)
+                .Select(x => new ArticleServiceModel
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    Author = x.Author,
+                    Category = x.Category,
+                    Content = x.Content,
+                    Date = x.Date,
+                    ArticlePictures = new List<ArticlePictureServiceModel>
+                    {
+                        new ArticlePictureServiceModel
+                        {
+                            Id = x.ArticlePictures[0].Id,
+                            ImageUrl = x.ArticlePictures[0].ImageUrl
+                        },
+                        new ArticlePictureServiceModel
+                        {
+                            Id = x.ArticlePictures[1].Id,
+                            ImageUrl = x.ArticlePictures[1].ImageUrl
+                        },
+                        new ArticlePictureServiceModel
+                        {
+                            Id = x.ArticlePictures[2].Id,
+                            ImageUrl = x.ArticlePictures[2].ImageUrl
+                        },
+                        new ArticlePictureServiceModel
+                        {
+                            Id = x.ArticlePictures[3].Id,
+                            ImageUrl = x.ArticlePictures[3].ImageUrl
+                        },
+                        new ArticlePictureServiceModel
+                        {
+                            Id = x.ArticlePictures[4].Id,
+                            ImageUrl = x.ArticlePictures[4].ImageUrl
+                        }
+                    }
+                }).FirstOrDefault();
+
+            return articleServiceModel;
         }
     }
 }

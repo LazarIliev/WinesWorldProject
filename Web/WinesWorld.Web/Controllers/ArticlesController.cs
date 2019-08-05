@@ -94,9 +94,15 @@ namespace WinesWorld.Web.Controllers
             return this.View(viewModel);
         }
 
-        public IActionResult Details()
+        public IActionResult Details(string id)
         {
-            return this.View();
+            //to get the article
+
+            ArticleServiceModel articleServiceModel = this.articlesService.GetArticleDetails(id);
+
+
+            //to pass the view model
+            return this.View(articleServiceModel);
         }
     }
 }

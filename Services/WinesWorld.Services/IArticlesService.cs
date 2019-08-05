@@ -10,7 +10,7 @@ namespace WinesWorld.Services
     {
         List<ArticleServiceModel> GetAllArticles();
 
-        void GetArticleDetails();
+        ArticleServiceModel GetArticleDetails(string id);
 
         Task<bool> Add(ArticleServiceModel articleServiceModel);
 
