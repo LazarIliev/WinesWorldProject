@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WinesWorld.Services;
 using WinesWorld.Services.Models;
+using WinesWorld.Services.Models.Enums;
 using WinesWorld.Web.InputModels;
 using WinesWorld.Web.ViewModels.Article.All;
 
@@ -27,6 +28,14 @@ namespace WinesWorld.Web.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
+             this.ViewData["articleCategories"] = new List<ArticleCategorySetviceModel>
+            {
+                ArticleCategorySetviceModel.Scientific,
+                ArticleCategorySetviceModel.Viticulture,
+                ArticleCategorySetviceModel.Winemaking
+            }
+            .ToList();
+
             return this.View();
         }
 
@@ -74,12 +83,37 @@ namespace WinesWorld.Web.Controllers
 
             await this.articlesService.Add(articleServiceModel);
                         
-            return this.Redirect("/Acticle/All");
+            return this.Redirect("/Articles/All");
         }        
 
         public IActionResult All()
         {
+            this.ViewData["articleCategories"] = new List<ArticleCategorySetviceModel>
+            {
+                ArticleCategorySetviceModel.Scientific,
+                ArticleCategorySetviceModel.Viticulture,
+                ArticleCategorySetviceModel.Winemaking
+            }
+            .ToList();
 
+            List<ArticleAllViewModel> viewModel = this.articlesService.GetAllArticles()
+                .Select(articleServiceModel => new ArticleAllViewModel
+                {
+                    Id = articleServiceModel.Id,
+                    BrefContent = articleServiceModel.Content,
+                    Title = articleServiceModel.Title,
+                    LinkMainPicture = articleServiceModel.ArticlePictures[0].ImageUrl,
+                    Category = articleServiceModel.Category.ToString()
+                })
+                .ToList();
+
+            return this.View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult All( string category)
+        {
+            ;
 
             List<ArticleAllViewModel> viewModel = this.articlesService.GetAllArticles()
                 .Select(articleServiceModel => new ArticleAllViewModel

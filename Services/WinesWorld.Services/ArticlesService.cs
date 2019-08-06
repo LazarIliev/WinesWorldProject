@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using WinesWorld.Data;
 using WinesWorld.Data.Models;
+using WinesWorld.Data.Models.Enums;
 using WinesWorld.Services.Models;
+using WinesWorld.Services.Models.Enums;
 
 namespace WinesWorld.Services
 {
@@ -21,11 +23,12 @@ namespace WinesWorld.Services
 
         public async Task<bool> Add(ArticleServiceModel articleServiceModel)
         {
+            ;
             Article article = new Article
             {
                 Title = articleServiceModel.Title,
                 Author = articleServiceModel.Author,
-                Category = articleServiceModel.Category,
+                Category = (ArticleCategory)articleServiceModel.Category,
                 Content = articleServiceModel.Content,
                 Date = articleServiceModel.Date,
                 Likes = 0,
@@ -56,6 +59,7 @@ namespace WinesWorld.Services
                     Id = articleFromDb.Id,
                     Title = articleFromDb.Title,
                     Content = articleFromDb.Content.Substring(0, 250),
+                    Category = (ArticleCategorySetviceModel)articleFromDb.Category,
                     ArticlePictures = new List<ArticlePictureServiceModel>
                     {
                        new ArticlePictureServiceModel
@@ -79,7 +83,7 @@ namespace WinesWorld.Services
                     Id = x.Id,
                     Title = x.Title,
                     Author = x.Author,
-                    Category = x.Category,
+                    Category = (ArticleCategorySetviceModel)x.Category,
                     Content = x.Content,
                     Date = x.Date,
                     ArticlePictures = new List<ArticlePictureServiceModel>

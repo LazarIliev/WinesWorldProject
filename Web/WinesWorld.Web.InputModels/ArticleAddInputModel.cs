@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using WinesWorld.Services.Models.Enums;
 
 namespace WinesWorld.Web.InputModels
 {
@@ -23,7 +23,7 @@ namespace WinesWorld.Web.InputModels
         public string Content { get; set; }
 
         [Required]
-        public string Category { get; set; }
+        public ArticleCategorySetviceModel Category { get; set; }
 
         [Required]
         public DateTime Date { get; set; }        

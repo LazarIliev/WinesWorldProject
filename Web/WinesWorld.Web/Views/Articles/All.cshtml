@@ -1,55 +1,61 @@
 ﻿@model List<WinesWorld.Web.ViewModels.Article.All.ArticleAllViewModel>
 
+@using WinesWorld.Services.Models.Enums;
+
 @{
     ViewData["Title"] = "All - Articles";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Page Content -->
-    <div class="container mt-3">
-        <div class="row">
-            <form class="col-md-4">
-                <label>Select a category:</label>
-                <select class="form-control select2">
-                    <option>Select</option>
-                    <option>Car</option>
-                    <option>Bike</option>
-                    <option>Scooter</option>
-                    <option>Cycle</option>
-                    <option>Horse</option>
-                </select>
-            </form>
-        </div>
-        <!-- Page Heading -->
-        <h1 class="my-4">
-            Articles Page
-            <small>To make a logic if it is selected by a category</small>
-        </h1>
-
-        @foreach (var item in Model)
-        {
-            <!-- Project One -->
-            <div class="row">
-                <div class="col-md-7">
-                    <a href="#">
-                        <img class="img-fluid rounded mb-3 mb-md-0" src="@item.LinkMainPicture" alt="">
-                    </a>
-                </div>
-                <div class="col-md-5">
-                    <h3>@item.Title</h3>
-                    <p>@item.BrefContent</p>
-                    <a class="btn btn-primary" href="/Articles/Details/@item.Id">View Article</a>
-                </div>
+<div class="container mt-3">
+    <div class="row">
+        <form id="select-category" class="col-md-4">
+            <label>Select a category:</label>
+            <div class="d-flex justify-content-center">
+                <label for="Category" class="text-primary h5">Category</label>
             </div>
-            <!-- /.row -->
+            <select class="form-control text-primary" id="type" for="Category">
+                <option selected disabled>--- Select Product Type ---</option>
+                @foreach (var type in (List<ArticleCategorySetviceModel>)this.ViewData["articleCategories"])
+                {
+                    <option value="@type">@type.ToString()</option>
+                }
+            </select>
+            <span id="Category" class="text-danger"></span>
+        </form>
+    </div>
+    <!-- Page Heading -->
+    <h1 class="my-4">
+        Articles Page
+        <small>To make a logic if it is selected by a category</small>
+    </h1>
 
-            <hr>
-        }
+    @foreach (var item in Model)
+    {
+        <!-- Project One -->
+        <div class="row product">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-fluid rounded mb-3 mb-md-0" src="@item.LinkMainPicture" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>@item.Title</h3>
+                <p>@item.BrefContent</p>
+                <a class="btn btn-primary" href="/Articles/Details/@item.Id">View Article</a>
+            </div>
+            <p>@item.Category</p>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+    }
 
 
 
-        <!-- Pagination -->
-        @*<ul class="pagination justify-content-center">
+    <!-- Pagination -->
+    @*<ul class="pagination justify-content-center">
             <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -73,5 +79,25 @@
             </li>
         </ul>*@
 
-    </div>
+</div>
 <!-- /.container -->
+
+
+<script>
+    $('#type').on('change', function () {
+        $('.product').show();
+
+        let category = $('#type').val();
+
+        for (let elem of $('.product')) {
+            let productCategory = $($(elem).children()[2]).text();
+
+            if (!productCategory.toLowerCase().includes(category.toLowerCase())) {
+                $(elem).hide();
+            }
+        }
+    });
+
+
+    
+</script>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using WinesWorld.Data.Models.Enums;
 
 namespace WinesWorld.Data.Models
 {
@@ -21,7 +22,7 @@ namespace WinesWorld.Data.Models
 
         public int Likes { get; set; }
 
-        public string Category { get; set; }//maybe enum
+        public ArticleCategory Category { get; set; }//maybe enum
 
         public DateTime Date { get; set; }
 

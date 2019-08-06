@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using WinesWorld.Services.Models.Enums;
 
 namespace WinesWorld.Services.Models
 {
@@ -14,7 +14,7 @@ namespace WinesWorld.Services.Models
 
         public string Content { get; set; }
 
-        public string Category { get; set; }
+        public ArticleCategorySetviceModel Category { get; set; }
 
         public DateTime Date { get; set; }
 

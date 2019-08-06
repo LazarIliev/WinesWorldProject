@@ -16,19 +16,7 @@ namespace WinesWorld.Web.Controllers
         public WinesController(IWinesService winesService)
         {
             this.winesService = winesService;
-        }
-
-        
-        public IActionResult Details( string id)
-        {
-            //to get the wine data
-            //
-
-            var wine = this.winesService.GetWineDetails(id);
-            //to pass it to the view in viewModel
-
-            return this.View(wine);
-        }
+        }               
 
         public IActionResult All()
         {
@@ -40,11 +28,23 @@ namespace WinesWorld.Web.Controllers
             return View(wines);
         }
 
+        public IActionResult Details(string id)
+        {
+            //to get the wine data
+            //
+
+            var wine = this.winesService.GetWineDetails(id);
+            //to pass it to the view in viewModel
+
+            return this.View(wine);
+        }
 
         [HttpGet]
         [Authorize(Roles ="Admin")]
         public IActionResult Add()
         {
+           
+
             return View();
         }
 

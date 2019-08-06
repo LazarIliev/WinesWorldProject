@@ -14,5 +14,6 @@ namespace WinesWorld.Web.ViewModels.Article.All
 
         public string LinkMainPicture { get; set; }
 
+        public string Category { get; set; }
     }
 }
