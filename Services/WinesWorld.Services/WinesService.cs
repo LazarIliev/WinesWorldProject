@@ -23,7 +23,7 @@ namespace WinesWorld.Services
             Wine wine = new Wine
             {
                 Name = wineAddInputModel.Name,
-                Winery = wineAddInputModel.Winery,
+                Country = wineAddInputModel.Country,
                 Type = wineAddInputModel.Type,
                 Year = wineAddInputModel.Year,
                 Description = wineAddInputModel.Description,
@@ -50,7 +50,7 @@ namespace WinesWorld.Services
                     Picture = wineDb.Picture,
                     Rating = wineDb.Rating,
                     Type = wineDb.Type,
-                    Winery = wineDb.Winery,
+                    Country = wineDb.Country,
                     Year = wineDb.Year
                 })
                 .ToList();
@@ -71,7 +71,7 @@ namespace WinesWorld.Services
                 Picture = wineDb.Picture,
                 Rating = wineDb.Rating,
                 Type = wineDb.Type,
-                Winery = wineDb.Winery,
+                Country = wineDb.Country,
                 Year = wineDb.Year
             };
 

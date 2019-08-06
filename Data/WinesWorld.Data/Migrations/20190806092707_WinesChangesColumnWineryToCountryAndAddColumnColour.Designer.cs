@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WinesWorld.Data;
 
 namespace WinesWorld.Data.Migrations
 {
     [DbContext(typeof(WinesWorldDbContext))]
-    partial class WinesWorldDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190806092707_WinesChangesColumnWineryToCountryAndAddColumnColour")]
+    partial class WinesChangesColumnWineryToCountryAndAddColumnColour
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

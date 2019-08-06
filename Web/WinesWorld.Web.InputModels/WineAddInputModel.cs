@@ -16,10 +16,13 @@ namespace WinesWorld.Web.InputModels
         public string Description { get; set; }
 
         [Required]
-        public string Winery { get; set; }
+        public string Country { get; set; }
 
         [Required]
         public DateTime Year { get; set; }
+
+        [Required]
+        public string Colour { get; set; }
 
         [Required]
         public IFormFile Picture { get; set; }

@@ -16,7 +16,7 @@ namespace WinesWorld.Services.Models
 
         public double Rating { get; set; }
 
-        public string Winery { get; set; }
+        public string Country { get; set; }
 
         public DateTime Year { get; set; }
 

@@ -18,8 +18,13 @@ namespace WinesWorld.Web.Controllers
             this.winesService = winesService;
         }               
 
-        public IActionResult All()
+        public IActionResult All( string Colour, string Type, string Country)
         {
+            ;
+
+
+
+
             //todo to get all wines from the db
             List<WineServiceModel> wines = this.winesService.GetAllWines();
             
@@ -67,7 +72,7 @@ namespace WinesWorld.Web.Controllers
             WineServiceModel wineServiceModel = new WineServiceModel
             {
                 Name = wineAddInputModel.Name,
-                Winery = wineAddInputModel.Winery,
+                Country = wineAddInputModel.Country,
                 Type = wineAddInputModel.Type,
                 Year =wineAddInputModel.Year,
                 Description = wineAddInputModel.Description,
@@ -76,7 +81,7 @@ namespace WinesWorld.Web.Controllers
 
             await this.winesService.Add(wineServiceModel);
 
-            return View();
+            return Redirect("/Wines/All");
         }
     }
 }

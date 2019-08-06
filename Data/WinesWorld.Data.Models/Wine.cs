@@ -14,11 +14,13 @@ namespace WinesWorld.Data.Models
 
         public string Type { get; set; }//maybe enum
 
+        public string Colour { get; set; }
+
         public int Likes { get; set; }
         
         public double Rating { get; set; }
 
-        public string Winery { get; set; }
+        public string Country { get; set; }
 
         public DateTime Year { get; set; }
 
