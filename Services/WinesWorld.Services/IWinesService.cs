@@ -10,6 +10,6 @@ namespace WinesWorld.Services
 
         List<WineServiceModel> GetAllWines();
 
-        WineServiceModel GetWineDetails(string id);
+        Task<WineServiceModel> GetWineDetails(string id);
     }
 }

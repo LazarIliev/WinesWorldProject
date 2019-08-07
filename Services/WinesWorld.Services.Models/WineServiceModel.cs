@@ -16,6 +16,8 @@ namespace WinesWorld.Services.Models
 
         public int Likes { get; set; }
 
+        public decimal Price { get; set; }
+
         public double Rating { get; set; }
 
         public string Country { get; set; }

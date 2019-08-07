@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace WinesWorld.Data.Models
+namespace WinesWorld.Services.Models
 {
-    public class Order
+    public class OrderServiceModel
     {
         public string Id { get; set; }
 
@@ -12,16 +12,16 @@ namespace WinesWorld.Data.Models
 
         public string WineId { get; set; }
 
-        public Wine Wine { get; set; }
+        public WineServiceModel Wine { get; set; }
 
         public int Quantity { get; set; }
 
         public string IssuerId { get; set; }
 
-        public WinesWorldUser Issuer { get; set; }
+        public WinesWorldUserServiceModel Issuer { get; set; }
 
         public int StatusId { get; set; }
 
-        public OrderStatus Status { get; set; }
+        public OrderStatusServiceModel Status { get; set; }
     }
 }

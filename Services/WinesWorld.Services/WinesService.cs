@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -60,9 +61,9 @@ namespace WinesWorld.Services
             return wines;
         }
 
-        public WineServiceModel GetWineDetails(string id)
+        public async Task<WineServiceModel> GetWineDetails(string id)
         {
-           var wineDb = this.context.Wines.FirstOrDefault(wineFromDb => wineFromDb.Id == id);
+           var wineDb = await this.context.Wines.SingleOrDefaultAsync(wineFromDb => wineFromDb.Id == id);
 
             var wine = new WineServiceModel
             {

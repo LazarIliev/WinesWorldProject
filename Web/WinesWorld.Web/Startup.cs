@@ -59,6 +59,7 @@ namespace WinesWorld.Web
             services.AddTransient<IWinesService, WinesService>();
             services.AddTransient<IArticlesService, ArticlesService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IOrdersService, OrdersService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);          
         }
@@ -87,6 +88,17 @@ namespace WinesWorld.Web
 
                         context.SaveChanges();
                     }
+
+                    if (!context.OrderStatuses.Any())
+                    {
+
+
+                        context.OrderStatuses.Add(new OrderStatus { Name = "active" });
+                        context.OrderStatuses.Add(new OrderStatus { Name = "completed" });
+
+                        context.SaveChanges();
+                    }
+                            
                 }
             }
 
