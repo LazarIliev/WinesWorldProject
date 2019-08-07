@@ -5,6 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <div class="row mt-3">
     <div class="col-2">
         <aside class="col-left sidebar">
@@ -13,36 +15,37 @@
             </div>
             <div class="col-md-12 col-lg-6 text-left">
                 <form method="post" asp-controller="Wines" asp-action="All">
-                    <input type="hidden" name="SearchString" value="">
-                    <input type="hidden" name="ChildCategoryId" value="">
-                    <input type="hidden" name="Page" value="">
                     <span class="text-muted">Цвят:</span>
-                    <select name="Colour" id="SortBy" onchange="this.form.submit();">
-                        <option value="Бяло" selected="">Бяло</option>
-                        <option value="Червено" selected="">Червено</option>
-                        <option value="Розе" selected="">Розе</option>
+                    <select id="selectColour">
+                        <option>Please select one</option>
+                        <option value="White">White</option>
+                        <option value="Red">Red</option>
+                        <option value="Rose">Rose</option>
                     </select>
+
                     <span class="text-muted">Тип:</span>
-                    <select name="Type" id="SortBy" onchange="this.form.submit()">
-                        <option value="Сухо вино" selected="">Сухо вино</option>
-                        <option value="Сладко вино" selected="">Сладко вино</option>
-                        <option value="Пенливо вино" selected="">Пенливо вино</option>
+                    <select id="selectType">
+                        <option>Please select one</option>
+                        <option value="Dry">Dry</option>
+                        <option value="SweetWine">Sweet wine</option>
+                        <option value="SparkleWine">Sparkle wine</option>
                     </select>
                     <span class="text-muted">Държава:</span>
-                    <select name="Country" id="SortBy" onchange="this.form.submit();">
-                        <option value="1" selected="">България</option>
-                        <option value="2" selected="">Аржентина</option>
-                        <option value="3" selected="">Нова Зеландия</option>
-                    </select>                    
+                    <select id="selectCountry">
+                        <option >Please select one</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="New Zealand">New Zealand</option>
+                    </select>
                 </form>
             </div>
         </aside>
         @*<aside class="col-left sidebar mt-4">
-            <div class="col-md-12 col-lg-6">
-                <strong>Кошница: </strong>
-            </div>
-                            todo a search bar
-        </aside>*@
+                <div class="col-md-12 col-lg-6">
+                    <strong>Кошница: </strong>
+                </div>
+                                todo a search bar
+            </aside>*@
     </div>
 
     <div class="col-md-10">
@@ -60,6 +63,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">@wine.Type</li>
                         <li class="list-group-item">@wine.Country</li>
+                        <li class="list-group-item">@wine.Colour</li>
 
                     </ul>
                     <div class="card-body">
@@ -67,9 +71,44 @@
                         <a href="/Wines/Details/@wine.Id" class="card-link">Details</a>
                     </div>
                 </div>
-            }            
+            }
         </div>
     </div>
 </div>
 
+<script>
+    $('select').on('change', function () {
+        let counter = 0;
+        for (let select of $('select')) {
+            
+            
+            if (select.textContent != 'Please select one') {
 
+            }
+
+            counter++;
+        }
+
+        if ($('#selectColour').val() != 'Please select one') {
+
+            $('.card').show();
+
+            
+            for (let elem of $('.card')) {
+
+                console.log($($(elem).children()[2]).children()[2].textContent)
+                
+                if ($($(elem).children()[2]).children()[2].textContent != $('#selectColour').val()) {
+                    $(elem).hide();
+                }
+            }
+
+        } else {
+            $('.card').show();
+        }
+
+        
+
+        
+    });
+</script>

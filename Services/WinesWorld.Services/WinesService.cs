@@ -29,7 +29,8 @@ namespace WinesWorld.Services
                 Description = wineAddInputModel.Description,
                 Picture = wineAddInputModel.Picture,
                 Likes = 0,
-                Rating = 0
+                Rating = 0,
+                Colour = wineAddInputModel.Colour
             };
 
             this.context.Wines.Add(wine);
@@ -51,7 +52,8 @@ namespace WinesWorld.Services
                     Rating = wineDb.Rating,
                     Type = wineDb.Type,
                     Country = wineDb.Country,
-                    Year = wineDb.Year
+                    Year = wineDb.Year,
+                    Colour = wineDb.Colour
                 })
                 .ToList();
 

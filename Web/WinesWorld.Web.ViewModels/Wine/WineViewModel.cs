@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace WinesWorld.Services.Models
+namespace WinesWorld.Web.ViewModels.Wine
 {
-    public class WineServiceModel
+    public class WineViewModel
     {
         public string Id { get; set; }
 

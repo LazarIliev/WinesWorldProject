@@ -28,9 +28,7 @@
       "provider": "unpkg",
       "library": "bootstrap@4.3.1",
       "destination": "wwwroot/js/",
-      "files": [
-        "dist/js/bootstrap.min.js"
-      ]
+      "files": ["dist/js/bootstrap.min.js"]
     },
     {
       "provider": "unpkg",
