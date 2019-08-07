@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 
 namespace WinesWorld.Data.Models
 {
@@ -7,7 +8,7 @@ namespace WinesWorld.Data.Models
     {
         public WinesWorldUser()
         {
-           
+            this.Orders = new List<Order>();
         }
 
         public string FullName { get; set; }
@@ -15,5 +16,7 @@ namespace WinesWorld.Data.Models
         public string Address { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public List<Order> Orders { get; set; }
     }
 }

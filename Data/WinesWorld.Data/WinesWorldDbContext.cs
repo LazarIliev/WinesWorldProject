@@ -17,6 +17,10 @@ namespace WinesWorld.Data
 
         public DbSet<ArticlePicture> ArticlePictures { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
+
         public WinesWorldDbContext(DbContextOptions options) : base(options)
         {
             
