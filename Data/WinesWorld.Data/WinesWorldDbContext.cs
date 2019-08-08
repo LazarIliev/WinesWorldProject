@@ -9,7 +9,7 @@ namespace WinesWorld.Data
     public class WinesWorldDbContext : IdentityDbContext<WinesWorldUser, IdentityRole, string>
     {
         //TODO: to add db sets
-        public DbSet<Destination> Destinations { get; set; }
+        public DbSet<Receipt> Receipts { get; set; }
 
         public DbSet<Article> Articles { get; set; }
 

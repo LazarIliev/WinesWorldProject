@@ -53,5 +53,12 @@ namespace WinesWorld.Web.Controllers
             return this.View(orders);
         }
 
+
+        [HttpPost]
+        public IActionResult Complete()
+        {
+            return this.View();
+        }
+
     }
 }
