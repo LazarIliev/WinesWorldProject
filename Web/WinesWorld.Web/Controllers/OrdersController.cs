@@ -14,13 +14,12 @@ namespace WinesWorld.Web.Controllers
     public class OrdersController : Controller
     {
         private readonly IOrdersService orderService;
+        private readonly IReceiptsService receiptsService;
 
-        
-
-        public OrdersController(IOrdersService orderService)
+        public OrdersController(IOrdersService orderService, IReceiptsService receiptsService)
         {
             this.orderService = orderService;
-            
+            this.receiptsService = receiptsService;
         }
 
         [HttpGet()]
@@ -55,9 +54,14 @@ namespace WinesWorld.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Complete()
+        [Route("/Order/Cart/Complete")]
+        public async Task<IActionResult> Complete()
         {
-            return this.View();
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            string receiptId = await this.receiptsService.CreateReceipt(userId);
+
+            return this.Redirect($"/Receipts/Details/{receiptId}");//todo fix
         }
 
     }

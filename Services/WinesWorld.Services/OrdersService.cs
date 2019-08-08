@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -61,9 +62,35 @@ namespace WinesWorld.Services
                         Picture = order.Wine.Picture
                     }
 
-                });
+                });            
+        }
 
-            
+
+        public async Task SetOrdersToReceipt(Receipt receipt)
+        {
+            List<Order> ordersFromDb = await this.context.Orders
+                .Where(order => order.IssuerId == receipt.RecipientId && order.Status.Name == "Active").ToListAsync();
+
+            receipt.Orders = ordersFromDb;
+        }
+
+        public async Task<bool> CompleteOrder(string orderId)
+        {
+            Order orderFromDb = await this.context.Orders.Include(x=>x.Status)
+                .SingleOrDefaultAsync(order => order.Id == orderId);
+
+            if (orderFromDb == null || orderFromDb.Status.Name != "Active")
+            {
+                throw new ArgumentException(nameof(orderFromDb));
+            }
+
+            orderFromDb.Status = await this.context.OrderStatuses
+                .SingleOrDefaultAsync(orderStatus => orderStatus.Name == "Completed");
+
+            this.context.Update(orderFromDb);
+            int result = await this.context.SaveChangesAsync();
+
+            return result > 0;
         }
     }
 }

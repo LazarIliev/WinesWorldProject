@@ -1,0 +1,45 @@
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using WinesWorld.Services;
+using WinesWorld.Services.Models;
+using WinesWorld.Web.ViewModels.Receipts.Details;
+
+namespace WinesWorld.Web.Controllers
+{
+    public class ReceiptsController : Controller
+    {
+        private readonly IReceiptsService receiptService;
+
+        public ReceiptsController(IReceiptsService receiptsService)
+        {
+            this.receiptService = receiptsService;
+        }
+
+
+        public async Task<IActionResult> Details(string id)
+        {
+            
+            ReceiptServiceModel receiptServiceModel = await this.receiptService.GetAll()
+              .SingleOrDefaultAsync(receipt => receipt.Id == id);
+
+            
+            ReceiptDetailsViewModel receiptDetailsViewModel = new ReceiptDetailsViewModel
+            {
+                Id = receiptServiceModel.Id,
+                IssuedOn = receiptServiceModel.IssuedOn,
+                Recipient = receiptServiceModel.Recipient.UserName,
+                Orders = receiptServiceModel.Orders.Select(order => new ReceiptDetailsOrderViewModel
+                {
+                    WineName = order.Wine.Name,
+                    WinePrice = order.Wine.Price,
+                    Quantity = order.Quantity
+
+                }).ToList()
+            };
+
+            return this.View(receiptDetailsViewModel);
+        }
+    }
+}
