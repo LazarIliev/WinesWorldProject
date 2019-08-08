@@ -136,7 +136,13 @@ namespace WinesWorld.Web.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(WineAddInputModel wineAddInputModel)
         {
-            
+
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(wineAddInputModel);
+            }
+
+
             byte[] picture = null;
 
             using (var pictureStream = wineAddInputModel.Picture.OpenReadStream())
@@ -156,7 +162,8 @@ namespace WinesWorld.Web.Controllers
                 Year =wineAddInputModel.Year,
                 Description = wineAddInputModel.Description,
                 Picture = picture,
-                Colour = wineAddInputModel.Colour
+                Colour = wineAddInputModel.Colour,
+                Price = wineAddInputModel.Price
             };
 
             await this.winesService.Add(wineServiceModel);

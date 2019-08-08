@@ -85,16 +85,29 @@
         </div>
     </div>
 
-    <div class="form-group mx-auto">
-        <div class="d-flex justify-content-center">
-            <label asp-for="Colour" class="text-primary h5">Colour</label>
+    <div id="date-and-picture-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Colour" class="text-primary h5">Colour</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="year"
+                   asp-for="Colour">
+            <span asp-validation-for="Colour" class="text-danger"></span>
         </div>
-        <input type="text"
-               class="form-control text-primary text-center"
-               id="year"
-               asp-for="Colour">
-        <span asp-validation-for="Colour" class="text-danger"></span>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Price" class="text-primary h5">Price</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="year"
+                   asp-for="Price">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
     </div>
+
     <div class="d-flex justify-content-center mt-3">
         <button class="btn btn-primary font-weight-bold">Add wine</button>
     </div>

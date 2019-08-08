@@ -19,6 +19,9 @@ namespace WinesWorld.Web.InputModels
         public string Country { get; set; }
 
         [Required]
+        public decimal Price { get; set; }
+
+        [Required]
         public DateTime Year { get; set; }
 
         [Required]
