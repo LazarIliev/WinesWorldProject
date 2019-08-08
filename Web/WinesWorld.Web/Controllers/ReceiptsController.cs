@@ -1,9 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WinesWorld.Services;
 using WinesWorld.Services.Models;
+using WinesWorld.Web.ViewModels.Receipts.All;
 using WinesWorld.Web.ViewModels.Receipts.Details;
 
 namespace WinesWorld.Web.Controllers
@@ -16,6 +19,31 @@ namespace WinesWorld.Web.Controllers
         {
             this.receiptService = receiptsService;
         }
+
+
+        public async Task<IActionResult> All()
+        {
+
+            string userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            List<ReceiptServiceModel> receiptServiceModel = await this.receiptService.GetAll()
+              .Where(receipt => receipt.RecipientId == userId)
+              .ToListAsync();
+
+            List<ReceiptAllViewModel> receiptAllViewModels = receiptServiceModel
+                .Select(receipt => new ReceiptAllViewModel
+                {
+                    Id = receipt.Id,
+                    IssuedOn = receipt.IssuedOn,
+                    Wines = receipt.Orders.Sum(order => order.Quantity),
+                    Total = receipt.Orders.Sum(order => order.Quantity * order.Wine.Price)
+                })
+                .ToList();
+
+
+            return this.View(receiptAllViewModels);
+        }
+
 
 
         public async Task<IActionResult> Details(string id)

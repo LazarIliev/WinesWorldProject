@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WinesWorld.Data;
 using WinesWorld.Data.Models;
@@ -68,9 +65,7 @@ namespace WinesWorld.Services
                    }).ToList()
                 });
 
-            //WineName = order.Wine.Name,
-            //        WinePrice = order.Wine.Price,
-            //        Quantity = order.Quantity
+            
 
             return allReceipts;
         }

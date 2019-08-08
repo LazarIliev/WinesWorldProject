@@ -94,7 +94,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/Articles/All">Articles</a>
                     </li>
-                    
+
                     @if (this.User.IsInRole("Admin"))
                     {
                         <li class="nav-item text-right">
@@ -117,6 +117,9 @@
                     {
                         <li class="nav-item text-right">
                             <a class="nav-link" href="/Orders/Cart">Cart</a>
+                        </li>
+                        <li class="nav-item text-right">
+                            <a class="nav-link" href="/Receipts/All">My Receipts</a>
                         </li>
                         <li class="nav-item text-right">
                             <a class="nav-link" href="#">@this.User.Identity.Name</a>
