@@ -39,7 +39,7 @@ namespace WinesWorld.Services
             return true;
         }
 
-        public List<WineServiceModel> GetAllWines()
+        public IQueryable<WineServiceModel> GetAllWines()
         {
             var wines = this.context.Wines
                 .Select(wineDb => new WineServiceModel
@@ -53,9 +53,10 @@ namespace WinesWorld.Services
                     Type = wineDb.Type,
                     Country = wineDb.Country,
                     Year = wineDb.Year,
-                    Colour = wineDb.Colour
-                })
-                .ToList();
+                    Colour = wineDb.Colour,
+                    Price = wineDb.Price
+                });
+                
 
             return wines;
         }
