@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WinesWorld.Data;
 using WinesWorld.Data.Models;
@@ -16,6 +15,7 @@ namespace WinesWorld.Tests.Service
     public class WinesServiceTests
     {
         private IWinesService winesService;
+        private const string wineId = "asfdsadfdsa";
 
         private List<Wine> GetDummyData()
         {
@@ -23,6 +23,7 @@ namespace WinesWorld.Tests.Service
             {
                 new Wine
                 {
+                    Id =  wineId,
                     Colour = "white",
                     Country = "Bulgaria",
                     Description = "wine description describing",
@@ -50,6 +51,11 @@ namespace WinesWorld.Tests.Service
             await context.SaveChangesAsync();
         }
 
+        public WinesServiceTests()
+        {
+            MapperInitializer.InitializeMapping();
+        }
+
         [Fact]
         public async Task GetAllWines_WithDummyData_ShouldReturnCorrectResult()
         {
@@ -63,20 +69,23 @@ namespace WinesWorld.Tests.Service
             this.winesService = new WinesService(context);
 
             //todo GetAllWines method to make it async
-            List<WineServiceModel> actualResults = await this.winesService.GetAllWines().ToListAsync(); ;
+            List<WineServiceModel> actualResults = await this.winesService.GetAllWines().ToListAsync(); 
+
+            
 
             List<WineServiceModel> expectedResults = GetDummyData()
-                .Select(wine => new WineServiceModel
-                {
-                    Colour = wine.Colour,
-                    Country = wine.Country,
-                    Description = wine.Description,
-                    Name = wine.Name,
-                    Price = wine.Price,
-                    Year = wine.Year,
-                    Type = wine.Type
-                })
-                .ToList();
+                .Select(wine => AutoMapper.Mapper.Map<WineServiceModel>(wine)).ToList();
+                //.Select(wine => new WineServiceModel
+                //{
+                //    Colour = wine.Colour,
+                //    Country = wine.Country,
+                //    Description = wine.Description,
+                //    Name = wine.Name,
+                //    Price = wine.Price,
+                //    Year = wine.Year,
+                //    Type = wine.Type
+                //})
+                //.ToList();
 
             //Assert
 
@@ -98,6 +107,53 @@ namespace WinesWorld.Tests.Service
                 Assert.True(expectedEntry.Colour == actualEntry.Colour, errorMessagePrefix + " Colour is not returned properly.");
                 //Assert.True(expectedEntry.Year == actualEntry.Year, errorMessagePrefix + " Year is not returned properly.");
             }
+        }
+
+        [Fact]
+        public async Task Add_WithCorrectData_ShouldSuccessfullyCreate()
+        {
+            string errorMessage = "WinesService Create() method does not work properly.";
+
+            var context = WinesWorldDbContextInMemoryFactory.InitializeContext();
+
+            this.winesService = new WinesService(context);
+
+            WineServiceModel wineServiceModel = new WineServiceModel
+            {
+                Colour = "rose",
+                Country = "Bulgaria",
+                Description = "wine description describing his aroma and flavour",
+                Name = "wine's name goat",
+                Price = 10.0M,
+                Year = DateTime.UtcNow.AddDays(-20),
+                Type = "dry-mid"
+            };
+
+
+            bool actualResult = await this.winesService.Add(wineServiceModel);
+
+            Assert.True(actualResult, errorMessage);
+        }
+
+        [Fact]
+        public async Task GetWineDetails_WithCorrectData_ShouldSuccessfullyGetDetails()
+        {
+            string errorMessage = "WinesService GetWineDetails method does not work properly.";
+
+            var context = WinesWorldDbContextInMemoryFactory.InitializeContext();
+
+            this.winesService = new WinesService(context);
+
+            await SeedData(context);
+
+            Wine actualWine = GetDummyData()[0];
+
+            var wineDb = await this.winesService.GetWineDetails(wineId);
+            
+
+            var expectedWine = AutoMapper.Mapper.Map<Wine>(actualWine);
+
+            Assert.Equal(expectedWine, actualWine);
         }
     }
 }
