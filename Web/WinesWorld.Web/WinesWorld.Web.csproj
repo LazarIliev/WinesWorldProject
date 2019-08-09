@@ -8,6 +8,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="CloudinaryDotNet" Version="1.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\WinesWorld.Data\WinesWorld.Data.csproj" />
+    <ProjectReference Include="..\..\Services\WinesWorld.Services.Mapping\WinesWorld.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\WinesWorld.Services.Models\WinesWorld.Services.Models.csproj" />
     <ProjectReference Include="..\..\Services\WinesWorld.Services\WinesWorld.Services.csproj" />
     <ProjectReference Include="..\WinesWorld.Web.InputModels\WinesWorld.Web.InputModels.csproj" />

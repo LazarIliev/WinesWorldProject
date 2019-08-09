@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace WinesWorld.Web.Controllers
             this.ordersService = ordersService;
         }               
 
-        public IActionResult All(WineAllViewModel wineAllViewModel)
+        public async Task<IActionResult> All(WineAllViewModel wineAllViewModel)
         {
             ;
 
@@ -33,7 +34,7 @@ namespace WinesWorld.Web.Controllers
 
 
             //todo to get all wines from the db
-            List<WineServiceModel> wines = this.winesService.GetAllWines();
+            List<WineServiceModel> wines = await this.winesService.GetAllWines().ToListAsync();
             //List<WineServiceModel> winesViewModel = new List<WineServiceModel>();
 
 

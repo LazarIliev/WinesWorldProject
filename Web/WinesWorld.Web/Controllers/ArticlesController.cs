@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using WinesWorld.Services;
@@ -113,7 +112,7 @@ namespace WinesWorld.Web.Controllers
         [HttpPost]
         public IActionResult All( string category)
         {
-            ;
+            
 
             List<ArticleAllViewModel> viewModel = this.articlesService.GetAllArticles()
                 .Select(articleServiceModel => new ArticleAllViewModel

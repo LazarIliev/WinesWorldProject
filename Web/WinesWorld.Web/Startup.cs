@@ -10,6 +10,11 @@ using WinesWorld.Data.Models;
 using System.Linq;
 using WinesWorld.Services;
 using CloudinaryDotNet;
+using WinesWorld.Services.Mapping;
+using WinesWorld.Web.InputModels;
+using System.Reflection;
+using WinesWorld.Web.ViewModels.Wine.All;
+using WinesWorld.Services.Models;
 
 namespace WinesWorld.Web
 {
@@ -68,6 +73,11 @@ namespace WinesWorld.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            AutoMapperConfig.RegisterMappings(
+                typeof(WineAddInputModel).GetTypeInfo().Assembly,
+                typeof(WineAllViewModel).GetTypeInfo().Assembly,
+                typeof(WineServiceModel).GetTypeInfo().Assembly);
+
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 using (var context = serviceScope.ServiceProvider.GetRequiredService<WinesWorldDbContext>())

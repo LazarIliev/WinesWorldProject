@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WinesWorld.Data.Models
 {
-    public class Wine
+    public class Wine 
     {
         public string Id { get; set; }
 

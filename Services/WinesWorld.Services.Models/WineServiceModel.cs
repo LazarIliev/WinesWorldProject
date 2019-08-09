@@ -1,8 +1,10 @@
 ﻿using System;
+using WinesWorld.Data.Models;
+using WinesWorld.Services.Mapping;
 
 namespace WinesWorld.Services.Models
 {
-    public class WineServiceModel
+    public class WineServiceModel : IMapFrom<Wine>, IMapTo<Wine>
     {
         public string Id { get; set; }
 

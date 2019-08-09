@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WinesWorld.Data;
 using WinesWorld.Data.Models;
+using WinesWorld.Services.Mapping;
 using WinesWorld.Services.Models;
 
 namespace WinesWorld.Services
@@ -19,21 +20,23 @@ namespace WinesWorld.Services
 
         public async Task<bool> Add(WineServiceModel wineAddInputModel)
         {
-            Wine wine = new Wine
-            {
-                Name = wineAddInputModel.Name,
-                Country = wineAddInputModel.Country,
-                Type = wineAddInputModel.Type,
-                Year = wineAddInputModel.Year,
-                Description = wineAddInputModel.Description,
-                Picture = wineAddInputModel.Picture,
-                Likes = 0,
-                Rating = 0,
-                Colour = wineAddInputModel.Colour,
-                Price = wineAddInputModel.Price
-            };
+            Wine wine1 = AutoMapper.Mapper.Map<Wine>(wineAddInputModel);
 
-            this.context.Wines.Add(wine);
+            //Wine wine = new Wine
+            //{
+            //    Name = wineAddInputModel.Name,
+            //    Country = wineAddInputModel.Country,
+            //    Type = wineAddInputModel.Type,
+            //    Year = wineAddInputModel.Year,
+            //    Description = wineAddInputModel.Description,
+            //    Picture = wineAddInputModel.Picture,
+            //    Likes = 0,
+            //    Rating = 0,
+            //    Colour = wineAddInputModel.Colour,
+            //    Price = wineAddInputModel.Price
+            //};
+
+            this.context.Wines.Add(wine1);
             await this.context.SaveChangesAsync();
 
             return true;
@@ -42,20 +45,21 @@ namespace WinesWorld.Services
         public IQueryable<WineServiceModel> GetAllWines()
         {
             var wines = this.context.Wines
-                .Select(wineDb => new WineServiceModel
-                {
-                    Id = wineDb.Id,
-                    Description = wineDb.Description,
-                    Likes = wineDb.Likes,
-                    Name = wineDb.Name,
-                    Picture = wineDb.Picture,
-                    Rating = wineDb.Rating,
-                    Type = wineDb.Type,
-                    Country = wineDb.Country,
-                    Year = wineDb.Year,
-                    Colour = wineDb.Colour,
-                    Price = wineDb.Price
-                });
+                .To<WineServiceModel>();
+                //.Select(wineDb => new WineServiceModel
+                //{
+                //    Id = wineDb.Id,
+                //    Description = wineDb.Description,
+                //    Likes = wineDb.Likes,
+                //    Name = wineDb.Name,
+                //    Picture = wineDb.Picture,
+                //    Rating = wineDb.Rating,
+                //    Type = wineDb.Type,
+                //    Country = wineDb.Country,
+                //    Year = wineDb.Year,
+                //    Colour = wineDb.Colour,
+                //    Price = wineDb.Price
+                //});
                 
 
             return wines;
