@@ -6,17 +6,17 @@
 
 
 
-<h1 class="text-left text-primary">Cart</h1>
-<hr class="hr-2 bg-primary">
+<h1 class="text-left text-dark">Cart</h1>
+<hr class="hr-2 bg-dark">
 @if (Model.Count == 0)
 {
-    <h2 class="text-center text-primary">You have no orders in your cart.</h2>
+    <h2 class="text-center text-dark">You have no orders in your cart.</h2>
     <hr class="hr-2 bg-primary">
 }
 else
 {
 
-    <div id="orders" class="text-primary">
+    <div id="orders" class="text-dark border border-dark-4 rounded p-3 w-60 mx-auto mt-3">
         <div class="order-info row mt-4">
             <h3 class="col-md-1 text-left">#</h3>
             <h3 class="col-md-3 text-left">Image</h3>
@@ -25,7 +25,7 @@ else
             <h3 class="col-md-1 text-left">Quantity</h3>
             <h3 class="col-md-2 text-center">Actions</h3>
         </div>
-        <hr class="hr-2 bg-primary">
+        <hr class="hr-2 bg-dark">
         @for (int i = 0; i < Model.Count; i++)
         {
             <div class="order row">
@@ -48,10 +48,10 @@ else
             </div>
         }
     </div>
-    <hr class="hr-2 bg-primary">
+    <hr class="hr-2 bg-dark">
     <form action="/Order/Cart/Complete" method="post" class="d-flex justify-content-between">
-        <button class="btn btn-primary font-weight-bold">Cashout</button>
-        <h2 class="text-primary" id="total-price">Total: @Model.Sum(order => order.Price * order.Quantity).ToString("F2")</h2>
+        <button class="btn btn-dark font-weight-bold">Cashout</button>
+        <h2 class="text-dark" id="total-price">Total: @Model.Sum(order => order.Price * order.Quantity).ToString("F2")</h2>
     </form>
     <script>
         function updateTotalPrice() {

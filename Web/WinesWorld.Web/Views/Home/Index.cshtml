@@ -3,9 +3,35 @@
 }
 
 
-<div class="jumbotron w-75 mx-auto mt-4 ">
-    <h1>Eventures - The best ticket service in the world.</h1>
-    <hr class="hr-2 bg-dark" />
-    <h3 class="mt-4"><a href="/Identity/Account/Login">Login</a> to start "eventing".</h3>
-    <h3 class="mt-4"><a href="/Identity/Account/Register">Register</a> if you don't have an account.</h3>
-</div>
+@if (this.User.Identity.IsAuthenticated)
+{
+    <div class="jumbotron w-75 mx-auto mt-4 ">
+        <div class="row justify-content-xl-center">
+            <h1>Wine like a world which surrounds us</h1>
+            <img src="https://www.bulwijn.nl/image/data/wine-regions.jpg" />
+        </div>
+        <hr class="bg-dark" />
+        <div class="row mt-4 justify-content-xl-between">
+            <div>
+                <h3>Wine like a way of living</h3>
+                <img src="http://www.bulgarianwine.net/sites/default/files/styles/bootstrap3_col6_square/public/villa-melnik-winery-bulgarian-wine.jpg?itok=nmsm6IHh" height="300"/>
+            </div>
+
+            <div>
+                <h3>Wine like a way of style</h3>
+                <img src="https://www.novinite.com/media/images/2017-12/photo_verybig_186437.jpg" height="300" />
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="jumbotron w-75 mx-auto mt-4 ">
+        <h1>Eventures - The best ticket service in the world.</h1>
+        <hr class="hr-2 bg-dark" />
+        <h3 class="mt-4"><a href="/Identity/Account/Login">Login</a> to start "eventing".</h3>
+        <h3 class="mt-4"><a href="/Identity/Account/Register">Register</a> if you don't have an account.</h3>
+    </div>
+}
+
+

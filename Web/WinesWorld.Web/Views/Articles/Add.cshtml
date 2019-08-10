@@ -7,24 +7,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add</h1>
+    <h1 class="text-center">Adding an article</h1>
 
-<form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
+<form method="post" class="form border border-dark-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
     <div id="name-and-price-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Title" class="text-primary h5">Title</label>
+                <label asp-for="Title" class="text-dark h5">Title</label>
             </div>
-            <input type="text" class="form-control text-primary text-center" id="title" placeholder="Title..."
+            <input type="text" class="form-control text-dark text-center" id="title" placeholder="Title..."
                    asp-for="Title">
             <span asp-validation-for="Title" class="text-danger"></span>
         </div>
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Author" class="text-primary h5">Author</label>
+                <label asp-for="Author" class="text-dark h5">Author</label>
             </div>
-            <input type="text" step="0.01" class="form-control text-primary text-center" id="author"
+            <input type="text" step="0.01"
+                   class="form-control text-dark text-center" 
+                   id="author"
                    placeholder="Author..." asp-for="Author">
             <span asp-validation-for="Author" class="text-danger"></span>
         </div>
@@ -32,27 +34,31 @@
     <div id="date-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Content" class="text-primary h5">Content</label>
+                <label asp-for="Content" class="text-dark h5">Content</label>
             </div>
-            <input type="text" class="form-control text-primary text-center" id="content"
+            <input type="text" 
+                   class="form-control text-dark text-center" 
+                   id="content"
                    placeholder="Content..." asp-for="Content">
             <span asp-validation-for="Content" class="text-danger"></span>
         </div>
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Date" class="text-primary h5">Date</label>
+                <label asp-for="Date" class="text-dark h5">Date</label>
             </div>
-            <input type="date" class="form-control text-primary text-center" id="date" asp-for="Date">
+            <input type="date" 
+                   class="form-control text-dark text-center" 
+                   id="date" asp-for="Date">
             <span asp-validation-for="Date" class="text-danger"></span>
         </div>
     </div>
-    <hr class="hr-2 bg-primary mt-4">
+    <hr class="hr-2 bg-dark mt-4">
     <div id="date-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Pictures" class="text-primary h5">Picture</label>
+                <label asp-for="Pictures" class="text-dark h5">Picture</label>
             </div>
-            <input type="file" class="form-control text-primary text-center" id="picture"
+            <input type="file" class="form-control text-dark text-center" id="picture"
                    placeholder="Title Picture..." asp-for="Pictures">
             <span asp-validation-for="Pictures" class="text-danger"></span>
         </div>
@@ -61,9 +67,9 @@
 
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Category" class="text-primary h5">Category</label>
+                <label asp-for="Category" class="text-dark h5">Category</label>
             </div>
-            <select class="form-control text-primary" id="type" asp-for="Category">
+            <select class="form-control text-dark" id="type" asp-for="Category">
                 <option selected disabled>--- Select Product Type ---</option>
                 @foreach (var type in (List<ArticleCategorySetviceModel>)this.ViewData["articleCategories"])
                 {
@@ -78,30 +84,36 @@
     <div class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Pictures" class="text-primary h5">Picture1</label>
+                <label asp-for="Pictures" class="text-dark h5">Picture1</label>
             </div>
-            <input type="file" class="form-control text-primary text-center" id="picture1"
+            <input type="file" class="form-control text-dark text-center" id="picture1"
                    asp-for="Pictures">
             <span asp-validation-for="Pictures" class="text-danger"></span>
 
             <div class="d-flex justify-content-center">
-                <label asp-for="Pictures" class="text-primary h5">Picture2</label>
+                <label asp-for="Pictures" class="text-dark h5">Picture2</label>
             </div>
-            <input type="file" class="form-control text-primary text-center" id="picture1"
+            <input type="file" 
+                   class="form-control text-dark text-center" 
+                   id="picture1"
                    asp-for="Pictures">
             <span asp-validation-for="Pictures" class="text-danger"></span>
 
             <div class="d-flex justify-content-center">
-                <label asp-for="Pictures" class="text-primary h5">Picture3</label>
+                <label asp-for="Pictures" class="text-dark h5">Picture3</label>
             </div>
-            <input type="file" class="form-control text-primary text-center" id="picture3"
+            <input type="file" 
+                   class="form-control text-dark text-center"
+                   id="picture3"
                    asp-for="Pictures">
             <span asp-validation-for="Pictures" class="text-danger"></span>
 
             <div class="d-flex justify-content-center">
-                <label asp-for="Pictures" class="text-primary h5">Picture4</label>
+                <label asp-for="Pictures" class="text-dark h5">Picture4</label>
             </div>
-            <input type="file" class="form-control text-primary text-center" id="picture1"
+            <input type="file" 
+                   class="form-control text-dark text-center"
+                   id="picture1"
                    asp-for="Pictures">
             <span asp-validation-for="Pictures" class="text-danger"></span>
         </div>
@@ -109,6 +121,6 @@
 
 
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Add wine</button>
+        <button class="btn btn-dark font-weight-bold">Add wine</button>
     </div>
 </form>

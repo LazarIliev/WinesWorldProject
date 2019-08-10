@@ -5,17 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Add</h1>
+<h1 class="text-center">Adding a wine</h1>
 
-<form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
+<form method="post" class="form border border-dark-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
     <div id="name-and-price-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Name" class="text-primary h5">Name</label>
+                <label asp-for="Name" class="text-dark h5">Name</label>
             </div>
             <input type="text"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="name"
                    placeholder="Name..."
                    asp-for="Name">
@@ -23,11 +23,11 @@
         </div>
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Country" class="text-primary h5">Country</label>
+                <label asp-for="Country" class="text-dark h5">Country</label>
             </div>
             <input type="text"
                    step="0.01"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="price"
                    placeholder="Country..."
                    asp-for="Country">
@@ -37,10 +37,10 @@
     <div id="date-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Type" class="text-primary h5">Type</label>
+                <label asp-for="Type" class="text-dark h5">Type</label>
             </div>
             <input type="text"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="manufacturedOn"
                    placeholder="Type..."
                    asp-for="Type">
@@ -48,24 +48,24 @@
         </div>
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Picture" class="text-primary h5">Picture</label>
+                <label asp-for="Picture" class="text-dark h5">Picture</label>
             </div>
             <input type="file"
-                   class="form-control text-primary text-center"
-                   id="picture"
-                   placeholder="Picture..."
+                   class="form-control text-dark text-center"
+                   id="picture"                   
+                   style="width: 200px"
                    asp-for="Picture">
             <span asp-validation-for="Picture" class="text-danger"></span>
         </div>
     </div>
-    <hr class="hr-2 bg-primary mt-4">
+    <hr class="hr-2 text-dark mt-4">
     <div id="date-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Year" class="text-primary h5">Year</label>
+                <label asp-for="Year" class="text-dark h5">Year</label>
             </div>
             <input type="date"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="year"
                    asp-for="Year">
             <span asp-validation-for="Year" class="text-danger"></span>
@@ -74,13 +74,16 @@
 
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Description" class="text-primary h5">Description</label>
+                <label asp-for="Description" class="text-dark h5">Description</label>
             </div>
-            <input type="text"
-                   class="form-control text-primary text-center"
-                   id="description"
-                   placeholder="Description..."
-                   asp-for="Description">
+            <textarea type="text"
+                      class="form-control text-dark text-center"
+                      id="description"
+                      placeholder="Description..."
+                      rows="5" 
+                      cols="23"
+                      asp-for="Description">
+            </textarea>
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
@@ -88,28 +91,30 @@
     <div id="date-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Colour" class="text-primary h5">Colour</label>
+                <label asp-for="Colour" class="text-dark h5">Colour</label>
             </div>
             <input type="text"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="year"
+                   placeholder="Colour..."
                    asp-for="Colour">
             <span asp-validation-for="Colour" class="text-danger"></span>
         </div>
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
-                <label asp-for="Price" class="text-primary h5">Price</label>
+                <label asp-for="Price" class="text-dark h5">Price</label>
             </div>
             <input type="text"
-                   class="form-control text-primary text-center"
+                   class="form-control text-dark text-center"
                    id="year"
+                   placeholder="Price..."
                    asp-for="Price">
             <span asp-validation-for="Price" class="text-danger"></span>
         </div>
     </div>
 
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Add wine</button>
+        <button class="btn btn-dark font-weight-bold">Add wine</button>
     </div>
 </form>
 
