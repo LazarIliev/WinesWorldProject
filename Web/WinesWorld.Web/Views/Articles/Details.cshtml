@@ -22,9 +22,6 @@
             <!-- Date/Time -->
             <p>Posted on @Model.Date.ToString("dd/MM/yyyy")</p>
             <hr>
-            <!-- Preview Image -->                                 @*900x300*@
-            @*<img class="img-fluid rounded" src="@Model.ArticlePictures[0].ImageUrl" >*@
-
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -35,6 +32,12 @@
                     </div>
                     <div class="carousel-item">
                         <img class="d-block w-100" src="@Model.ArticlePictures[2].ImageUrl" alt="Third slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="@Model.ArticlePictures[3].ImageUrl" alt="Fourth slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="@Model.ArticlePictures[4].ImageUrl" alt="Fifth slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -210,3 +213,24 @@
 
 </div>
 <!-- /.container -->
+<div class="info">
+    <label for="example">
+        Enter Text
+    </label>
+    <input id="example" type="text"
+           name="Ntext" size="20">
+    <input id="sent" type="submit"
+           value="Send">
+</div>
+<p id="para">
+</p>
+
+<script>
+    window.onclick = function(e)
+    {   var id =  e.target.id;
+     if (id === 'sent')
+     { var txt = document.getElementById('example').value
+       $( "#para" ).empty().append( txt );
+     }
+    }
+</script>

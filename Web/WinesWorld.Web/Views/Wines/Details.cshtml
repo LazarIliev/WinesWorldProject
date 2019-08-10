@@ -23,29 +23,19 @@
         <div class="col-md-4">
             <h3 class="my-3">Description</h3>
             <p>@Model.Description</p>
-            <h3 class="my-3">Project Details</h3>
+            <h3 class="my-3">Wine's Details</h3>
             <ul>
-                <li>@Model.Country</li>
-                <li>@Model.Year</li>
-                <li>@Model.Price</li>
-                <li>Order</li>
+                <li><b>Country:</b> @Model.Country</li>
+                <li><b>Vintage:</b> @Model.Year.ToString("dd/MM/yyyy")</li>
+                <li><b>Price:</b> @Model.Price</li>
             </ul>
         </div>
 
     </div>
-    <!-- /.row -->
-    <!-- Related Projects Row -->
-    <h3 class="my-4">Related Projects</h3>
-
-    <ul class="text-left">
-        <li>@Model.Likes</li>
-    </ul>
-    <div class="row">
-
-
-        <button>Likes</button>
-        <button>Favorite</button>
-        <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
+    <!-- /.row -->    
+    <hr />
+    <div class="row">        
+        <button class="btn btn-dark text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
     </div>
     <!-- /.row -->
 

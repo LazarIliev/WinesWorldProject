@@ -27,25 +27,25 @@
                     <select id="selectType">
                         <option>Please select one</option>
                         <option value="Dry">Dry</option>
-                        <option value="SweetWine">Sweet wine</option>
-                        <option value="SparkleWine">Sparkle wine</option>
+                        <option value="Sweet wine">Sweet wine</option>
+                        <option value="Sparkle wine">Sparkle wine</option>
                     </select>
                     <span class="text-muted">Държава:</span>
                     <select id="selectCountry">
-                        <option >Please select one</option>
+                        <option>Please select one</option>
                         <option value="Bulgaria">Bulgaria</option>
                         <option value="Argentina">Argentina</option>
                         <option value="New Zealand">New Zealand</option>
                     </select>
                 </form>
             </div>
-        </aside>        
+        </aside>
     </div>
 
     <div class="col-md-10">
         <div class="row">
             @foreach (var wine in Model)
-            {               
+            {
                 <div class="card col-md-3" style="width: 18rem;">
                     <img src="data:image/jpeg;base64,@Convert.ToBase64String(wine.Picture)" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -58,7 +58,6 @@
                         <li class="list-group-item">@wine.Colour</li>
                     </ul>
                     <div class="card-body">
-                        <a href="#" class="card-link">Order</a>
                         <a href="/Wines/Details/@wine.Id" class="card-link">Details</a>
                     </div>
                 </div>
@@ -69,37 +68,32 @@
 
 <script>
     $('select').on('change', function () {
-        let counter = 0;
-        for (let select of $('select')) {
-            
-            
-            if (select.textContent != 'Please select one') {
+        
 
-            }
+        $('.card').show();
 
-            counter++;
-        }
+        let pleaseSelectOneVar = 'Please select one';
+        let selectorsArray =
+            [
+                $('#selectType').val(),
+                $('#selectCountry').val(),
+                $('#selectColour').val()
+            ];
 
-        if ($('#selectColour').val() != 'Please select one') {
 
-            $('.card').show();
-
-            
+        let counterOfSelectors = 0;
+        for (let selector of selectorsArray) {
             for (let elem of $('.card')) {
 
-                console.log($($(elem).children()[2]).children()[2].textContent)
-                
-                if ($($(elem).children()[2]).children()[2].textContent != $('#selectColour').val()) {
+                let elemTextContent = $($(elem).children()[2]).children()[counterOfSelectors].textContent;
+                console.log(selector);
+                console.log(elemTextContent);
+
+                if (selector.toLowerCase() != elemTextContent.toLowerCase() && selector != pleaseSelectOneVar) {
                     $(elem).hide();
                 }
             }
-
-        } else {
-            $('.card').show();
+                counterOfSelectors++;
         }
-
-        
-
-        
     });
 </script>
