@@ -23,7 +23,7 @@ else
             <h3 class="col-md-3 text-left">Product</h3>
             <h3 class="col-md-2 text-left">Price</h3>
             <h3 class="col-md-1 text-left">Quantity</h3>
-            <h3 class="col-md-2 text-center">Actions</h3>
+            
         </div>
         <hr class="hr-2 bg-dark">
         @for (int i = 0; i < Model.Count; i++)
@@ -36,15 +36,7 @@ else
                 </div>
                 <h5 class="col-md-3 text-left">@Model[i].Name</h5>
                 <h5 class="col-md-2 text-left order-price">@Model[i].Price</h5>
-                <h5 class="col-md-1 text-right order-quantity">x@(Model[i].Quantity)</h5>
-                <div class="col-md-1 mx-auto d-flex justify-content-around">
-                    <div class="minus-button" id="@(Model[i].Id)-minus">
-                        <i class="fas fa-minus text-primary h4"></i>
-                    </div>
-                    <div class="plus-button" id="@(Model[i].Id)-plus">
-                        <i class="fas fa-plus text-primary h4"></i>
-                    </div>
-                </div>
+                <h5 class="col-md-1 text-right order-quantity">x@(Model[i].Quantity)</h5>                
             </div>
         }
     </div>
